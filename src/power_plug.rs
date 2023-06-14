@@ -1,5 +1,5 @@
 use crate::control::{Control, PowerControl, PowerState};
-use std::io;
+use std::io::{stdin, Read};
 
 pub struct PowerPlug {
     power_state: PowerState,
@@ -25,6 +25,15 @@ impl PowerPlug {
     pub fn get_state(&self) -> &str {
         self.power_state.state_name()
     }
+    pub fn show_info(&self) {
+        print!("\x1B[2J\x1B[1;1H");
+        println!(
+            "Smart plug prototype\nv0.0.1\nImplemented methods: current_consumption, get_state, \
+        show_info, power_change, control"
+        );
+        println!("Press any key...");
+        stdin().read_exact(&mut [0]).unwrap();
+    }
 }
 
 impl PowerControl for PowerPlug {
@@ -48,13 +57,14 @@ impl Control for PowerPlug {
                 }
                 PowerState::Off => (),
             }
-            println!("Choose action: \n 1: Turn ON/Off\n 2: Main Menu");
+            println!("Choose action: \n1: Turn ON/Off\n2: Main Menu\n3: Get Info");
             let mut command = String::new();
-            io::stdin().read_line(&mut command).unwrap();
+            stdin().read_line(&mut command).unwrap();
             let command = command.trim();
             match command {
                 "1" => self.power_change(),
                 "2" => break,
+                "3" => self.show_info(),
                 _ => continue,
             }
         }
