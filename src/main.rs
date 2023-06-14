@@ -1,7 +1,7 @@
-use std::io;
-use smart_home::{power_plug, thermometer, control};
 use control::Control;
 use power_plug::PowerPlug;
+use smart_home::{control, power_plug, thermometer};
+use std::io;
 use thermometer::Thermometer;
 
 fn main() {
@@ -19,7 +19,7 @@ fn main() {
             "1" => plug.control(),
             "2" => tr.control(),
             "3" => break,
-            _ => continue
+            _ => continue,
         };
     }
 }
