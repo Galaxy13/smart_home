@@ -14,3 +14,7 @@ path = "src/lib/lib.rs"
 [[bin]]
 name = "smarthome_bin"
 path = "src/bin/smarthome_main.rs"
+
+[[example]]
+name = "smarthome_demo"
+path = "src/examples/smarthome_example.rs"

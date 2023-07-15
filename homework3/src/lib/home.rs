@@ -37,8 +37,8 @@ impl Home{
         room_names
     }
 
-    pub fn get_room_by_name(&mut self, room_name: &str) -> &mut Room {
-        self.rooms.get_mut(room_name).expect(&format!("No {} room in this Home instance", room_name))
+    pub fn get_room_by_name(&mut self, room_name: &str) -> Option<&mut Room> {
+        self.rooms.get_mut(room_name)
     }
 
     pub fn get_rooms_list(&self) -> Vec<&Room> {
@@ -70,11 +70,9 @@ impl Home{
         owned_string.push_str(self.home_name());
         owned_string.push_str("\nCurrent rooms number: ");
         owned_string.push_str(self.rooms.len().to_string().as_str());
-        let mut room_names = self.get_rooms_names();
-        room_names.sort();
-        for room_name in room_names {
+        for (room_name, _) in self.rooms.iter() {
             owned_string.push('\n'); 
-            owned_string.push_str(room_name.as_str());
+            owned_string.push_str(room_name);
         }
         owned_string.push('\n');
         owned_string
@@ -85,7 +83,7 @@ impl Home{
     }
 
     pub fn create_device(&mut self, room_name: &str, device_type: Devices, device_name: &str){
-        let room: &mut Room = self.rooms.get_mut(room_name).expect(&format!("No room {} found", room_name));
+        let room: &mut Room = self.rooms.get_mut(room_name).unwrap();
         room.add_device(device_type, device_name);
     }
 }
