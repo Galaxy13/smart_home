@@ -1,8 +1,8 @@
-## Homework 3 (Smart Home implementation)
+## Homework 4 (Smart Home implementation)
 ### Rust Professional course
-To fork __Homework 3__ project, typo:
+To fork __Homework 4__ project, typo:
 ```commandline
-git clone https://github.com/Galaxy13/smart_home/homework3
+git clone https://github.com/Galaxy13/smart_home/homework4
 ```
 Unit tests are availlible for *smarthome_lib* library. To run tests execute:
 ```commandline
