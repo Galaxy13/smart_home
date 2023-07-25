@@ -2,8 +2,8 @@
 1. Fizz Buzz :heavy_check_mark:
 2. Smart Home :heavy_check_mark:
 3. Smart Home 2 :heavy_check_mark:
-4. Divide and test prototype of "smart home" :warning:
-5. Exception handling in prototype of "smart home" :black_square_button:
+4. Divide and test prototype of "smart home" :heavy_check_mark:
+5. Exception handling in prototype of "smart home" :warning:
 6. Dynamic "Smart Home" :black_square_button:
 7. Smart Socket via TCP :black_square_button:
 8. Thermometer via UDP :black_square_button:
