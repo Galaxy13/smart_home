@@ -1,7 +1,6 @@
-use std::collections::HashMap;
 use crate::control::{DeviceInterface, PowerControl, PowerState};
 use crate::{Devices, Info};
-
+use std::collections::HashMap;
 
 pub struct Thermometer {
     name: String,
@@ -12,11 +11,11 @@ pub struct Thermometer {
 
 impl Default for Thermometer {
     fn default() -> Self {
-        Thermometer{
+        Thermometer {
             name: String::from("Untitled"),
             device_type: Devices::Thermometer,
             power_state: PowerState::Off,
-            temperature: 0.0
+            temperature: 0.0,
         }
     }
 }
@@ -30,7 +29,9 @@ impl Thermometer {
             temperature,
         }
     }
-    pub fn current_temperature(&self) -> f64 { self.temperature }
+    pub fn current_temperature(&self) -> f64 {
+        self.temperature
+    }
     pub fn get_state(&self) -> &str {
         self.power_state.state_name()
     }
@@ -51,7 +52,7 @@ impl PowerControl for Thermometer {
     }
 }
 
-impl Info for Thermometer{
+impl Info for Thermometer {
     fn get_name(&self) -> String {
         String::from(&self.name)
     }
@@ -60,10 +61,12 @@ impl Info for Thermometer{
     }
     fn sensor_info(&self) -> HashMap<String, String> {
         let mut info = HashMap::new();
-        info.insert("Current temperature".to_string(), self.temperature.to_string());
+        info.insert(
+            "Current temperature".to_string(),
+            self.temperature.to_string(),
+        );
         info
     }
 }
 
-impl DeviceInterface for Thermometer{ }
-
+impl DeviceInterface for Thermometer {}

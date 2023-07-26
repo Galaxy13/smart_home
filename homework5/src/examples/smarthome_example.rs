@@ -1,8 +1,8 @@
-use smarthome_lib::{create_smarthome, report};
-use smarthome_lib::Devices::{Thermometer, PowerPlug};
 use smarthome_lib::home::Home;
+use smarthome_lib::Devices::{PowerPlug, Thermometer};
+use smarthome_lib::{create_smarthome, report};
 
-fn main(){
+fn main() {
     // Creating main Home instance
     // Acceptable name: String
     let home_name = String::from("Example Home");
@@ -26,9 +26,9 @@ fn main(){
     let room_2 = smart_home.get_room_by_name("Room 2");
     print!("{}", report(&room_2));
     let rooms = smart_home.get_rooms_list().unwrap_or_default();
-    for room in rooms{
+    for room in rooms {
         let devices = room.get_devices().values();
-        for device in devices{
+        for device in devices {
             print!("{}", report(&device.as_ref()))
         }
     }

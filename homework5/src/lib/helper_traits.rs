@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use crate::Devices;
+use std::collections::HashMap;
 
 pub trait Info {
     fn get_name(&self) -> String;
@@ -7,7 +7,6 @@ pub trait Info {
     fn sensor_info(&self) -> HashMap<String, String>;
 }
 
-pub trait Report{
+pub trait Report {
     fn string_report(&self) -> String;
 }
-

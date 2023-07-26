@@ -1,6 +1,6 @@
-use smarthome_lib::{create_smarthome, report};
-use smarthome_lib::Devices::Thermometer;
 use smarthome_lib::home::Home;
+use smarthome_lib::Devices::Thermometer;
+use smarthome_lib::{create_smarthome, report};
 
 fn main() {
     let mut smart_home: Home = create_smarthome("House 1");

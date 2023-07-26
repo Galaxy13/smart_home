@@ -1,6 +1,6 @@
 ## Homework 5 (Smart Home implementation)
 ### Rust Professional course
-To fork __Homework 4__ project, typo:
+To fork __Homework 5__ project, typo:
 ```commandline
 git clone https://github.com/Galaxy13/smart_home/homework5
 ```

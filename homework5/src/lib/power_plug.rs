@@ -1,7 +1,6 @@
-use std::collections::HashMap;
 use crate::control::{DeviceInterface, PowerControl, PowerState};
 use crate::{Devices, Info};
-
+use std::collections::HashMap;
 
 pub struct PowerPlug {
     name: String,
@@ -12,11 +11,11 @@ pub struct PowerPlug {
 
 impl Default for PowerPlug {
     fn default() -> Self {
-        PowerPlug{
+        PowerPlug {
             name: String::from("Untitled"),
             device_type: Devices::PowerPlug,
             power_state: PowerState::Off,
-            energy_power: 0.0
+            energy_power: 0.0,
         }
     }
 }
@@ -51,7 +50,7 @@ impl PowerControl for PowerPlug {
     }
 }
 
-impl Info for PowerPlug{
+impl Info for PowerPlug {
     fn get_name(&self) -> String {
         String::from(&self.name)
     }
@@ -65,4 +64,4 @@ impl Info for PowerPlug{
     }
 }
 
-impl DeviceInterface for PowerPlug{}
+impl DeviceInterface for PowerPlug {}
