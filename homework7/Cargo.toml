@@ -12,12 +12,12 @@ name = "smarthome_lib"
 path = "src/lib/lib.rs"
 
 [[bin]]
-name = "smarthome_bin"
-path = "src/bin/smarthome_main.rs"
-
-[[bin]]
 name = "test_server"
 path = "src/bin/server.rs"
+
+[[bin]]
+name = "test_client"
+path = "src/bin/client.rs"
 
 [[example]]
 name = "smarthome_demo"

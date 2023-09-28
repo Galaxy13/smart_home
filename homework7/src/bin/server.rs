@@ -1,5 +1,5 @@
-use std::io::{BufRead, BufReader};
-use std::net::{TcpListener, TcpStream};
+use std::io::{Read, Write};
+use std::net::{Shutdown, TcpListener, TcpStream};
 use smarthome_lib::create_powerplug;
 use smarthome_lib::control::{PowerControl, PowerState};
 use smarthome_lib::helper_traits::Info;
@@ -16,14 +16,18 @@ fn main() {
         let sender = stream.peer_addr();
         println!("Received command from {:?}", sender);
         let command = handle_connection(stream);
+        let res = command.trim_matches(char::from(0));
+        let command: Vec<&str> = res.split_whitespace().collect();
         if !command.is_empty(){
-            let base_command = &command[0] as &str;
+            let base_command = command[0];
             match base_command{
                 "state" => if command.get(1).is_some(){
                     let argument = &command[1];
                     match argument as &str {
-                        "on" => power_plug.power_change(PowerState::On),
-                        "off" => power_plug.power_change(PowerState::Off),
+                        "on" => {power_plug.power_change(PowerState::On);
+                        println!("Power is On")},
+                        "off" => {power_plug.power_change(PowerState::Off);
+                        println!("Power if Off")},
                         _ => println!("Wrong argument!")
                     }
                 },
@@ -43,12 +47,16 @@ fn main() {
     }
 }
 
-fn handle_connection(mut tcp_stream: TcpStream) -> Vec<String> {
-    let buf_reader = BufReader::new(&mut tcp_stream);
-    let command: Vec<_> = buf_reader
-        .lines()
-        .map(|result| result.unwrap())
-        .take_while(|line| !line.is_empty())
-        .collect();
-    command
+fn handle_connection(mut tcp_stream: TcpStream) -> String {
+    let mut data = [0_u8; 20];
+    match tcp_stream.read(&mut data) {
+        Ok(size) => {
+            tcp_stream.write_all(&data[0..size]).unwrap();
+        },
+        Err(e) => {
+            println!("Error {} occurred", e);
+            tcp_stream.shutdown(Shutdown::Both).unwrap();
+        },
+    }
+    String::from_utf8_lossy(&data).to_string()
 }
