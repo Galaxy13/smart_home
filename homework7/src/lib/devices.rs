@@ -11,4 +11,3 @@ impl Report for PowerPlug {
         plug_report
     }
 }
-

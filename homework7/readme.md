@@ -1,22 +1,23 @@
-## Homework 6 (Smart Home implementation)
+## Homework 7 (TCP Power Plug)
 ### Rust Professional course
-To fork __Homework 6__ project, typo:
+To fork __Homework 7__ project, typo:
 ```commandline
-git clone https://github.com/Galaxy13/smart_home/homework6
+git clone https://github.com/Galaxy13/smart_home/homework7
 ```
-Unit tests are availlible for *smarthome_lib* library. To run tests execute:
+To execute server:
 ```commandline
-cargo test --lib
+cargo run --bin test_server
 ```
-or
+To execute client:
 ```commandline
-cargo test
+cargo run --bin test_client
 ```
-Examples of usage of *smarthome_lib* are availible in /src/examples directory. To execute examples:
-```commandline
-cargo run --example smarthome_demo
-```
+!Client expects an error, if server is not available, but this exception crashes the program
 
-New thing implemented:
-- added options to create and remove rooms and devices (with tests)
-- added new tests
+List of available client commands:
+```commandline
+command[state/get] argument
+```
+- state on/off : changes power state
+- get state/power/name: returns to console current power state/power consumption/plug name
+- exit: closes program

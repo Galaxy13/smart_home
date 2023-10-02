@@ -41,7 +41,7 @@ impl PowerControl for PowerPlug {
     fn power_change(&mut self, new_state: PowerState) {
         match new_state {
             PowerState::On => self.power_state = PowerState::On,
-            PowerState::Off => self.power_state = PowerState::Off
+            PowerState::Off => self.power_state = PowerState::Off,
         }
     }
     fn current_state(&self) -> &str {
