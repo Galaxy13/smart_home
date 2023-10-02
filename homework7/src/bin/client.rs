@@ -42,7 +42,6 @@ fn handle_answer(stream: &mut TcpStream, expected_type: ExpectedAnswer) -> Resul
             match status_code {
                 1u8 => println!("Request Successful"),
                 100u8 => println!("Internal Server Error"),
-                200u8 => println!("Wrong request"),
                 _ => println!("Unknown Error")
             }
             let msg_length = usize::from(buf[1]);
@@ -92,6 +91,19 @@ fn main() {
                                 1u8 => println!("Power State: ON"),
                                 _ => println!("Unknown state")
                             }
+                        },
+                        ClientCommand::GetName => {
+                            let answer: Vec<u8> = handle_answer(&mut stream, ExpectedAnswer::Name).unwrap();
+                            let name = String::from_utf8(answer).unwrap();
+                            println!("Power plug name: {}", name);
+                        },
+                        ClientCommand::GetConsumption => {
+                            let answer: Vec<u8> = handle_answer(&mut stream, ExpectedAnswer::Power).unwrap();
+                            let power = f32::from_be_bytes([answer[0], answer[1], answer[2], answer[3]]);
+                            println!("Power cunsumption: {}", power);
+                        },
+                        ClientCommand::ExitCode => {
+                            break
                         }
                         _ => {}
                     }

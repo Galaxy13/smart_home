@@ -8,7 +8,6 @@ use smarthome_lib::helper_traits::Info;
 enum AnswerCode {
     Success,
     InternalError,
-    NotFound
 }
 
 impl AnswerCode{
@@ -16,7 +15,6 @@ impl AnswerCode{
         match *self {
             AnswerCode::Success => 1u8,
             AnswerCode::InternalError => 100u8,
-            AnswerCode::NotFound => 200u8
         }
     }
 }
@@ -82,7 +80,7 @@ fn main() {
                 }
                 println!("Name of power plug is {}", power_plug.get_name())
             }
-            _ => {}
+            _ => {handle_request(AnswerCode::InternalError, &stream, &[]).unwrap();}
         }
         println!("Command from {:?} completed", sender)
     }

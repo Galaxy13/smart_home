@@ -6,7 +6,7 @@ pub struct PowerPlug {
     name: String,
     device_type: Devices,
     power_state: PowerState,
-    energy_power: f64,
+    energy_power: f32,
 }
 
 impl Default for PowerPlug {
@@ -26,10 +26,10 @@ impl PowerPlug {
             name: device_name,
             device_type: Devices::PowerPlug,
             power_state: PowerState::Off,
-            energy_power: 0.0,
+            energy_power: 25.5,
         }
     }
-    pub fn current_consumption(&self) -> &f64 {
+    pub fn current_consumption(&self) -> &f32 {
         &self.energy_power
     }
     pub fn get_state(&self) -> &str {
